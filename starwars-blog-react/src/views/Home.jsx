@@ -15,6 +15,15 @@ function Home() {
           <Card />
         </div>
       </div>
+      <div>
+        <h1>Planets</h1>
+        <div
+          className="d-flex gap-5 overflow-auto"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          <Card />
+        </div>
+      </div>
     </div>
   );
 }

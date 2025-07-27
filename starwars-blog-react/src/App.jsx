@@ -2,6 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./views/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Characters from "./views/Characters.jsx";
+import Planets from "./views/Planets.jsx";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route path="/Characters" element={<Characters />} />
+          <Route path="/Planets" element={<Planets />} />
         </Routes>
       </BrowserRouter>
     </>
