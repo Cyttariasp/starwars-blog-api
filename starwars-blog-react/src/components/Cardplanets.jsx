@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card(props) {
+function Cardplanets(props) {
   return (
     <div
       className="card"
@@ -10,9 +10,8 @@ function Card(props) {
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Gender: {props.gender}</li>
-          <li className="list-group-item">Hair color: {props.hair}</li>
-          <li className="list-group-item">Eye color: {props.eye}</li>
+          <li className="list-group-item">Population: {props.population}</li>
+          <li className="list-group-item">Terrain: {props.terrain}</li>
         </ul>
         <a href="#" className="btn btn-primary">
           Learn more
@@ -25,4 +24,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default Cardplanets;

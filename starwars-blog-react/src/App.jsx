@@ -12,8 +12,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/Characters" element={<Characters />} />
-          <Route path="/Planets" element={<Planets />} />
+          <Route path="/Characters/:id" element={<Characters />} />
+          <Route path="/Planets/:id" element={<Planets />} />
         </Routes>
       </BrowserRouter>
     </>
