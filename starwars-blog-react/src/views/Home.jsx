@@ -12,9 +12,10 @@ function Home() {
       .then(async (data) => {
         const details = await Promise.all(
           data.results.map(async (charact) => {
+            console.log(charact);
             const res = await fetch(charact.url);
             const json = await res.json();
-            return json.result.properties;
+            return { ...json.result.properties, uid: charact.uid };
           })
         );
         setCharacters(details);
@@ -28,14 +29,14 @@ function Home() {
     fetch("https://www.swapi.tech/api/planets")
       .then((res) => res.json())
       .then(async (data) => {
-        const detailsMap = await Promise.all(
+        const details = await Promise.all(
           data.results.map(async (planet) => {
             const res = await fetch(planet.url);
             const json = await res.json();
-            return json.result.properties;
+            return { ...json.result.properties, uid: planet.uid };
           })
         );
-        setPlanets(detailsMap);
+        setPlanets(details);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -48,11 +49,11 @@ function Home() {
           className="d-flex gap-5 overflow-auto"
           style={{ whiteSpace: "nowrap" }}
         >
-          {characters.map((charact) => (
+          {characters.map((charact, index) => (
             <Card
-              key={charact.uid}
+              key={index}
+              uid={charact.uid}
               name={charact.name}
-              img={charact.url}
               gender={charact.gender}
               hair={charact.hair_color}
               eye={charact.eye_color}
@@ -66,11 +67,11 @@ function Home() {
           className="d-flex gap-5 overflow-auto"
           style={{ whiteSpace: "nowrap" }}
         >
-          {planets.map((planet) => (
+          {planets.map((planet, index) => (
             <Cardplanets
-              key={planet.uid}
+              key={index}
+              uid={planet.uid}
               name={planet.name}
-              img={planet.url}
               population={planet.population}
               terrain={planet.terrain}
             />

@@ -1,29 +1,52 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React from "react";
 
-function Characters(props) {
+function Characters() {
+  const { id } = useParams();
+  const [character, setCharacter] = React.useState({});
+  React.useEffect(() => {
+    console.log(id);
+    fetch(`https://www.swapi.tech/api/people/${id}`)
+      .then((res) => res.json())
+      .then((data) => setCharacter(data.result.properties))
+      .catch((err) => console.error(err));
+  }, [id]);
+
+  console.log(id);
+
   return (
     <div>
       <div className="row">
         <div className="col-6">
-          <img
-            src="https://starwarsblog.com/wp-content/uploads/2020/05/Star-Wars-Characters-1.jpg"
-            className="img-fluid"
-            alt="Star Wars Characters"
-          />
+          <div
+            className="bg-secondary"
+            style={{ height: "400px", width: "600px" }}
+          ></div>
         </div>
         <div className="col-6">
-          <h1>{props.name}</h1>
-          <p>{props.info}</p>
+          <h1>{character.name}</h1>
+          <p>{character.url}</p>
         </div>
       </div>
       <div className="row">
-        <div className="col-2">Name {props.name}</div>
-        <div className="col-2">Birth year {props.year}</div>
-        <div className="col-2">Gender {props.gender}</div>
-        <div className="col-2">Height {props.height}</div>
-        <div className="col-2">Skin color {props.skin}</div>
-        <div className="col-2">Eye color {props.eyes}</div>
+        <div className="col-2 text-danger">
+          Name <br /> {character.name}
+        </div>
+        <div className="col-2 text-danger">
+          Birth year <br /> {character.birth_year}
+        </div>
+        <div className="col-2 text-danger">
+          Gender <br /> {character.gender}
+        </div>
+        <div className="col-2 text-danger">
+          Height <br /> {character.height}
+        </div>
+        <div className="col-2 text-danger">
+          Skin color <br /> {character.skin_color}
+        </div>
+        <div className="col-2 text-danger">
+          Eye color <br /> {character.eye_color}
+        </div>
       </div>
     </div>
   );

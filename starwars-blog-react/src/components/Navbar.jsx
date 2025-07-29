@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-dark-subtle  w-100">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           STARWARS
-        </a>
+        </Link>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <a
             className="nav-link dropdown-toggle"
