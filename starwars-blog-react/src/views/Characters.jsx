@@ -17,13 +17,13 @@ function Characters() {
   return (
     <div>
       <div className="row">
-        <div className="col-6">
+        <div className="col-auto">
           <div
-            className="bg-secondary"
+            className="bg-secondary m-2"
             style={{ height: "400px", width: "600px" }}
           ></div>
         </div>
-        <div className="col-6">
+        <div className="col-auto">
           <h1>{character.name}</h1>
           <p>{character.url}</p>
         </div>

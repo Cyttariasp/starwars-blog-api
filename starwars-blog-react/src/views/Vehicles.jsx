@@ -1,14 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import React from "react";
 
-function Planets() {
+function Vehicles() {
   const { id } = useParams();
-  const [planet, setPlanets] = React.useState({});
+  const [vehicle, setVehicles] = React.useState({});
   React.useEffect(() => {
     console.log(id);
-    fetch(`https://www.swapi.tech/api/planets/${id}`)
+    fetch(`https://www.swapi.tech/api/vehicles/${id}`)
       .then((res) => res.json())
-      .then((data) => setPlanets(data.result.properties))
+      .then((data) => setVehicles(data.result.properties))
       .catch((err) => console.error(err));
   }, [id]);
 
@@ -22,32 +22,32 @@ function Planets() {
           ></div>{" "}
         </div>
         <div className="col-auto">
-          <h1>{planet.name}</h1>
-          <p>{planet.info}</p>
+          <h1>{vehicle.name}</h1>
+          <p>{vehicle.films}</p>
         </div>
       </div>
       <div className="row">
         <div className="col-2 text-danger">
-          Name <br /> {planet.name}
+          Name <br /> {vehicle.name}
         </div>
         <div className="col-2 text-danger">
-          Climate <br /> {planet.climate}
+          Cost in cradits <br /> {vehicle.cost_in_credits}
         </div>
         <div className="col-2 text-danger">
-          Population <br /> {planet.population}
+          Lenght <br /> {vehicle.length}
         </div>
         <div className="col-2 text-danger">
-          Oribital period <br /> {planet.orbital_period}
+          Model <br /> {vehicle.model}
         </div>
         <div className="col-2 text-danger">
-          Rotation period <br /> {planet.rotation_period}
+          Passengers <br /> {vehicle.passengers}
         </div>
         <div className="col-2 text-danger">
-          Diameter <br /> {planet.diameter}
+          Vehicle class <br /> {vehicle.vehicle_class}
         </div>
       </div>
     </div>
   );
 }
 
-export default Planets;
+export default Vehicles;
