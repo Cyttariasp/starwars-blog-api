@@ -15,18 +15,23 @@ function Vehicles() {
   return (
     <div>
       <div className="row">
-        <div className="col-auto m-2">
+        <div className="col-6">
           <div
             className="bg-secondary"
             style={{ height: "400px", width: "600px" }}
           ></div>{" "}
         </div>
-        <div className="col-auto">
+        <div className="col-6">
           <h1>{vehicle.name}</h1>
-          <p>{vehicle.films}</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad
+            consequatur perferendis autem unde incidunt, inventore nihil amet
+            natus. Eligendi, facilis molestiae! Corporis non laudantium vitae,
+            ipsa maiores hic a aperiam?
+          </p>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-2 text-danger">
           Name <br /> {vehicle.name}
         </div>

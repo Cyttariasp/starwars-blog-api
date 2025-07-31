@@ -31,7 +31,7 @@ function Planets() {
           </p>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-2 text-danger">
           Name <br /> {planet.name}
         </div>

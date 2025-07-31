@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import Card from "../components/Card.jsx";
 import Cardplanets from "../components/Cardplanets.jsx";
 import Cardvehicles from "../components/Cardvehicles.jsx";
+import Loadingcard from "../components/Loadingcard.jsx";
 
 function Home({ addFavorite }) {
+  const [loadingCharacters, setLoadingCharacters] = React.useState(true);
   const [characters, setCharacters] = React.useState([]);
 
-  // const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   console.log(addFavorite);
 
@@ -15,15 +16,23 @@ function Home({ addFavorite }) {
     fetch("https://www.swapi.tech/api/people")
       .then((res) => res.json())
       .then(async (data) => {
-        const details = await Promise.all(
-          data.results.map(async (charact) => {
-            console.log(charact);
+        const details = [];
+
+        for (let i = 0; i < data.results.length; i++) {
+          const charact = data.results[i];
+
+          try {
             const res = await fetch(charact.url);
             const json = await res.json();
-            return { ...json.result.properties, uid: charact.uid };
-          })
-        );
+            details.push({ ...json.result.properties, uid: charact.uid });
+          } catch (error) {
+            console.error("Error");
+          }
+
+          await delay(100);
+        }
         setCharacters(details);
+        setLoadingCharacters(false);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -34,13 +43,20 @@ function Home({ addFavorite }) {
     fetch("https://www.swapi.tech/api/planets")
       .then((res) => res.json())
       .then(async (data) => {
-        const details = await Promise.all(
-          data.results.map(async (planet) => {
+        const details = [];
+
+        for (let i = 0; i < data.results.length; i++) {
+          const planet = data.results[i];
+
+          try {
             const res = await fetch(planet.url);
             const json = await res.json();
-            return { ...json.result.properties, uid: planet.uid };
-          })
-        );
+            details.push({ ...json.result.properties, uid: planet.uid });
+          } catch (error) {
+            console.error("Error");
+          }
+          await delay(100);
+        }
         setPlanets(details);
       })
       .catch((err) => console.error(err));
@@ -52,40 +68,51 @@ function Home({ addFavorite }) {
     fetch("https://www.swapi.tech/api/vehicles")
       .then((res) => res.json())
       .then(async (data) => {
-        const details = await Promise.all(
-          data.results.map(async (vehicle) => {
+        const details = [];
+
+        for (let i = 0; i < data.results.length; i++) {
+          const vehicle = data.results[i];
+
+          try {
             const res = await fetch(vehicle.url);
             const json = await res.json();
-            return { ...json.result.properties, uid: vehicle.uid };
-          })
-        );
+            details.push({ ...json.result.properties, uid: vehicle.uid });
+          } catch (error) {
+            console.error("Error");
+          }
+          await delay(100);
+        }
         setVehicles(details);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div className="home w-100">
-      <div>
+    <div className="home w-100 pt-5">
+      <div className="my-2">
         <h1>Chatacters</h1>
         <div
           className="d-flex gap-5 overflow-auto"
           style={{ whiteSpace: "nowrap" }}
         >
-          {characters.map((charact, index) => (
-            <Card
-              key={index}
-              uid={charact.uid}
-              name={charact.name}
-              gender={charact.gender}
-              hair={charact.hair_color}
-              eye={charact.eye_color}
-              addFavorite={addFavorite}
-            />
-          ))}
+          {loadingCharacters ? (
+            <Loadingcard />
+          ) : (
+            characters.map((charact, index) => (
+              <Card
+                key={index}
+                uid={charact.uid}
+                name={charact.name}
+                gender={charact.gender}
+                hair={charact.hair_color}
+                eye={charact.eye_color}
+                addFavorite={addFavorite}
+              />
+            ))
+          )}
         </div>
       </div>
-      <div>
+      <div className="my-2">
         <h1>Planets</h1>
         <div
           className="d-flex gap-5 overflow-auto"
@@ -103,7 +130,7 @@ function Home({ addFavorite }) {
           ))}
         </div>
       </div>
-      <div>
+      <div className="my-2">
         <h1>Vehicules</h1>
         <div
           className="d-flex gap-5 overflow-auto"

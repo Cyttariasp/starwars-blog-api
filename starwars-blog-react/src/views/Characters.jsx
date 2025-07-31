@@ -17,18 +17,24 @@ function Characters() {
   return (
     <div>
       <div className="row">
-        <div className="col-auto">
+        <div className="col-6">
           <div
-            className="bg-secondary m-2"
+            className="bg-secondary"
             style={{ height: "400px", width: "600px" }}
           ></div>
         </div>
-        <div className="col-auto">
+        <div className="col-6">
           <h1>{character.name}</h1>
-          <p>{character.url}</p>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
+            reprehenderit dolores perspiciatis ipsa quam! Recusandae assumenda
+            saepe exercitationem provident temporibus dicta molestiae
+            perferendis! Quas qui debitis placeat. Accusamus, inventore
+            repellendus!
+          </p>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-2 text-danger">
           Name <br /> {character.name}
         </div>
