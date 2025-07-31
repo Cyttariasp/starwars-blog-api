@@ -4,8 +4,12 @@ import Card from "../components/Card.jsx";
 import Cardplanets from "../components/Cardplanets.jsx";
 import Cardvehicles from "../components/Cardvehicles.jsx";
 
-function Home() {
+function Home({ addFavorite }) {
   const [characters, setCharacters] = React.useState([]);
+
+  // const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  console.log(addFavorite);
 
   useEffect(() => {
     fetch("https://www.swapi.tech/api/people")
@@ -76,6 +80,7 @@ function Home() {
               gender={charact.gender}
               hair={charact.hair_color}
               eye={charact.eye_color}
+              addFavorite={addFavorite}
             />
           ))}
         </div>
@@ -93,6 +98,7 @@ function Home() {
               name={planet.name}
               population={planet.population}
               terrain={planet.terrain}
+              addFavorite={addFavorite}
             />
           ))}
         </div>
@@ -111,6 +117,7 @@ function Home() {
               length={vehicle.length}
               model={vehicle.model}
               vehicle_class={vehicle.vehicle_class}
+              addFavorite={addFavorite}
             />
           ))}
         </div>

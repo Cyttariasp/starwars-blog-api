@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ favorites, removeFavorite }) {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark-subtle  w-100">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-dark-subtle w-100">
+      <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link className="navbar-brand" to="/">
           STARWARS
         </Link>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="dropdown" id="navbarNavDropdown">
           <a
             className="nav-link dropdown-toggle"
             href="#"
@@ -15,24 +15,35 @@ function Navbar() {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Dropdown link
+            Favoritos
           </a>
-          <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </li>
+          <ul className="dropdown-menu dropdown-menu-end">
+            {favorites.length === 0 ? (
+              <li>
+                <a className="dropdown-item" href="#">
+                  Empty
+                </a>
+              </li>
+            ) : (
+              favorites.map((fav) => (
+                <li key={fav.uid}>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <Link
+                      className="dropdown-item"
+                      to={`/${fav.type.toLowerCase()}s/${fav.uid}`}
+                    >
+                      {fav.name}
+                    </Link>
+                    <button
+                      className="btn btn-outline-danger btn-sm mx-2"
+                      onClick={() => removeFavorite(fav.uid)}
+                    >
+                      x
+                    </button>
+                  </div>
+                </li>
+              ))
+            )}
           </ul>
         </div>
       </div>

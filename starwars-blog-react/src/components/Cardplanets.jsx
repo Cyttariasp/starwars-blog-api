@@ -2,6 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Cardplanets(props) {
+  const handleFavClick = () => {
+    props.addFavorite({
+      uid: props.uid,
+      name: props.name,
+      type: "Planet",
+    });
+  };
+
   return (
     <div className="card p-0" style={{ width: "400px", minWidth: "400px" }}>
       <div
@@ -17,8 +25,8 @@ function Cardplanets(props) {
         <Link to={`/Planets/${props.uid}`} className="btn btn-primary">
           Learn more
         </Link>
-        <a href="#" className="btn btn-warning">
-          Fav
+        <a className="btn btn-warning m-2 text-light" onClick={handleFavClick}>
+          ♥
         </a>
       </div>
     </div>

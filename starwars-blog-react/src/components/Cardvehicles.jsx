@@ -2,6 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Cardvehicules(props) {
+  const handleFavClick = () => {
+    props.addFavorite({
+      uid: props.uid,
+      name: props.name,
+      type: "Vehicle",
+    });
+  };
+
   return (
     <div className="card p-0" style={{ width: "400px", minWidth: "400px" }}>
       <div
@@ -20,8 +28,12 @@ function Cardvehicules(props) {
         <Link to={`/Vehicles/${props.uid}`} className="btn btn-primary">
           Learn more
         </Link>
-        <a href="#" className="btn btn-warning">
-          Fav
+        <a
+          href="#"
+          className="btn btn-warning m-2 text-light"
+          onClick={handleFavClick}
+        >
+          ♥
         </a>
       </div>
     </div>

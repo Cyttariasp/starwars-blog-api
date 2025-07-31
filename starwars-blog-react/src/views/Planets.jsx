@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React from "react";
 
 function Planets() {
@@ -15,15 +15,20 @@ function Planets() {
   return (
     <div>
       <div className="row">
-        <div className="col-auto m-2">
+        <div className="col-6">
           <div
             className="bg-secondary"
             style={{ height: "400px", width: "600px" }}
           ></div>{" "}
         </div>
-        <div className="col-auto">
+        <div className="col-6">
           <h1>{planet.name}</h1>
-          <p>{planet.info}</p>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
+            est cupiditate iste dolorem quas nihil similique illum reprehenderit
+            asperiores officia velit corrupti nesciunt culpa non aut reiciendis
+            numquam, repellat praesentium.
+          </p>
         </div>
       </div>
       <div className="row">
